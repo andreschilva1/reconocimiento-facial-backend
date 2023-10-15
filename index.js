@@ -21,7 +21,7 @@ routeMappings.forEach(routeMapping => {
   app.use(prefix, routes[routeName]);
 });
 
-db.sync()
+db.sync({alter : true})
   .then(() => {
     console.log('¡La base de datos está sincronizada!');
     // ... Iniciar tu servidor Express o realizar otras operaciones ...

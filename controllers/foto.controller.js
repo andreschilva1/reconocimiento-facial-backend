@@ -1,18 +1,20 @@
-import s3Upload from "../services/s3.service.js";
+import s3 from "../services/s3.service.js";
 import Foto from "../models/foto.js";
 import { getFaceDescriptor } from "../services/faceRecognition.service.js";
 import { addPersonaDesaparecida } from "../services/personaDesaparecida.service.js";
 
 const uploadFoto = async (req, res) => {
   try {
-    const url = await s3Upload(req);
-    const { nombre,descripcion, edad, sexo } = req.body;
+    console.log(req.body);
+    const url = await s3.uploadImage(req);
+    const { nombre,descripcion, edad, sexo,authId} = req.body;
 
     const personaDesaparecida = await addPersonaDesaparecida(
       nombre,
       descripcion,
       edad,
-      sexo
+      sexo,
+      authId,
     );
 
     const descriptor = await getFaceDescriptor(url);
