@@ -11,6 +11,7 @@ const Foto = db.define('foto', {
   
   Foto.belongsTo(PersonaDesaparecida, {
     as: 'persona_desaparecida',
+    onDelete: 'CASCADE', 
   });
 
   PersonaDesaparecida.hasMany(Foto, {

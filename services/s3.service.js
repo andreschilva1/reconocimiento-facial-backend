@@ -1,4 +1,4 @@
-import { S3Client, PutObjectCommand } from "@aws-sdk/client-s3";
+import { S3Client, PutObjectCommand, DeleteObjectCommand } from "@aws-sdk/client-s3";
 import { readFile, unlink } from "node:fs/promises";
 import "dotenv/config";
 
@@ -36,4 +36,18 @@ const uploadImage = async ({ file }) => {
   }
 };
 
-export default uploadImage;
+const deleteImage = async (key) => {
+  const params = {
+    Bucket: process.env.BUCKET,
+    Key: key,
+  };
+  const commandDelete = new DeleteObjectCommand(params);
+  try {
+    const response = await s3.send(commandDelete);
+    console.log(response);
+  } catch (err) {
+    console.error(err);
+  }
+}
+
+export default {uploadImage, deleteImage};
