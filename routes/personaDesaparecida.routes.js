@@ -9,4 +9,5 @@ router.get("/misPersonasDesaparecidas",authMiddleware, personasDesaparecidasCont
 router.put("/updatePersonaDesaparecida",authMiddleware, personasDesaparecidasController.updatePersonaDesaparecida);
 router.delete("/deletePersonaDesaparecida",authMiddleware,personasDesaparecidasController.deletePersonaDesaparecida);
 
+
 export default router;
