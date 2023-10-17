@@ -5,7 +5,7 @@ import { addPersonaDesaparecida } from "../services/personaDesaparecida.service.
 
 const uploadFoto = async (req, res) => {
   try {
-    console.log(req.body);
+    //console.log(req.body);
     const url = await s3.uploadImage(req);
     const { nombre,descripcion, edad, sexo,authId} = req.body;
 
